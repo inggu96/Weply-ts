@@ -6,8 +6,8 @@ interface Props {
 
 export const MusicCard = ({ title, description, thumbnails }: Props) => {
   return (
-    <section className="">
-      <div className="bg-gray-900 shadow-lg rounded p-3">
+    <section>
+      <div className="bg-gray-900 shadow-lg rounded p-3 mx-3 ">
         <div className="group relative">
           <img className="w-full md:w-72 block rounded" src={thumbnails} alt="" />
           <div className="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex items-center group-hover:opacity-100 transition justify-evenly">
@@ -52,8 +52,7 @@ export const MusicCard = ({ title, description, thumbnails }: Props) => {
           </div>
         </div>
         <div className="p-5">
-          <h3 className="text-white text-lg">{title}</h3>
-          <p className="text-gray-400 h-20 overflow-y-auto">{description}</p>
+          <h3 className="text-white text-lg h-20 shadow">{title}</h3>
         </div>
       </div>
     </section>

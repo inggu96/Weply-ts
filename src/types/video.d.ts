@@ -3,7 +3,7 @@ interface VideoItem {
     title: string;
     description: string;
     thumbnails: {
-      default: {
+      high: {
         url: string;
       };
     };

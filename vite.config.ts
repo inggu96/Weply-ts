@@ -5,5 +5,8 @@ import tailwindcss from "tailwindcss";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // optimizeDeps: {
+  //   exclude: ["@tanstack/react-query-devtools", "react-slick", "slick-carousel"],
+  // },
   plugins: [react(), tsconfigPaths(), tailwindcss()],
 });
