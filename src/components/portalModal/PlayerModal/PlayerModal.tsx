@@ -1,4 +1,3 @@
-import React from "react";
 import { Modal } from "../Modal";
 import ModalFrame from "../ModalFrame";
 import { usePlayListStore, useVideoStore } from "store/Playlist";
