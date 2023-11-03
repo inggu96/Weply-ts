@@ -91,7 +91,6 @@ export const MusicCard = ({ videoId, title, thumbnails }: Props) => {
           <h3 className="text-white text-lg h-9 shadow truncate">{title}</h3>
         </div>
       </div>
-      <VideoTable />
     </section>
   );
 };

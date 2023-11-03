@@ -2,6 +2,7 @@ import React from "react";
 import { Modal } from "../Modal";
 import ModalFrame from "../ModalFrame";
 import { usePlayListStore, useVideoStore } from "store/Playlist";
+import { VideoTable } from "@src/components/MusicCard/VideoTable";
 
 type PlayerModalType = {
   setOnModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -43,7 +44,9 @@ const PlayerModal = ({
           </div>
         </div>
       </Modal.Title>
-      <Modal.Content>aaaa</Modal.Content>
+      <Modal.Content>
+        <VideoTable />
+      </Modal.Content>
     </ModalFrame>
   );
 };

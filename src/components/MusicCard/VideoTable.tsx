@@ -8,11 +8,13 @@ export const VideoTable = () => {
       <tbody>
         {videos.map((video, index) => (
           <tr key={index}>
-            <td>{video.id}</td>
-            <td>{video.title}</td>
+            <td>{index}</td>
+            {/* <td>{video.id}</td> */}
             <td>
-              <img src={video.thumbnails} alt="" />
+              <img className="w-20" src={video.thumbnails} alt="" />
             </td>
+            <td>{video.title}</td>
+
             <td>
               <button onClick={() => removeVideo(video.id)}>Remove</button>
             </td>
