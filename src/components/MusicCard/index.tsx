@@ -11,18 +11,15 @@ interface Props {
 }
 
 export const MusicCard = ({ videoId, title, thumbnails }: Props) => {
-  const { selectVideoID, setVideoId } = usePlayListStore();
+  const { setSelectVideoId, setModalId } = usePlayListStore();
   const { addVideo } = useVideoStore();
   const [onModal, setOnModal] = useState(false);
 
   const handleClick = (thumbnails: string, videoId: string, title: string) => {
-    setVideoId({ id: videoId, title, thumbnails });
+    setSelectVideoId(videoId);
     addVideo({ id: videoId, title, thumbnails });
     openModal();
-    console.log(selectVideoID);
-    console.log(videoId);
-    console.log(thumbnails);
-    console.log(title);
+    setModalId(videoId, title, thumbnails);
   };
 
   const handleButtonClick = (event: React.MouseEvent) => {

@@ -7,8 +7,10 @@ type Video = {
 };
 
 type VideoState = {
-  selectVideoID: Video | null;
-  setVideoId: (id: string, title: string, thumbnails: string) => void;
+  selectVideoId: string;
+  modalId: Video | null;
+  setSelectVideoId: (id: string) => void;
+  setModalId: (id: string, title: string, thumbnails: string) => void;
 };
 
 type VideoTableState = {
@@ -18,8 +20,10 @@ type VideoTableState = {
 };
 
 export const usePlayListStore = create<VideoState>((set) => ({
-  selectVideoID: null as Video | null,
-  setVideoId: (id, title, thumbnails) => set({ selectVideoID: { id, title, thumbnails } }),
+  selectVideoId: "",
+  modalId: null as Video | null,
+  setSelectVideoId: (id) => set({ selectVideoId: id }),
+  setModalId: (id, title, thumbnails) => set({ modalId: { id, title, thumbnails } }),
 }));
 
 export const useVideoStore = create<VideoTableState>((set) => ({

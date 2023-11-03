@@ -10,7 +10,7 @@ import { useState } from "react";
 import { usePlayListStore } from "store";
 
 const Home = () => {
-  const { selectVideoID } = usePlayListStore();
+  const { selectVideoId } = usePlayListStore();
   const { isLoading, error, data } = useQuery<VideoItem[]>({
     queryKey: ["popular"],
     queryFn: fetchPopularVideos,
@@ -70,7 +70,7 @@ const Home = () => {
           <div className={`${isOpen ? "block" : "hidden"}`}>
             <ReactPlayer
               controls={false}
-              url={`https://www.youtube.com/watch?v=${selectVideoID}`}
+              url={`https://www.youtube.com/watch?v=${selectVideoId}`}
             />
           </div>
         </div>

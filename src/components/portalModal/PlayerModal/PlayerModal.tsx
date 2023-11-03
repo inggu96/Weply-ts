@@ -19,9 +19,9 @@ const PlayerModal = ({
   isDim = true,
   className,
 }: PlayerModalType) => {
-  const { selectVideoID } = usePlayListStore();
+  const { modalId } = usePlayListStore();
   const { videos, removeVideo } = useVideoStore();
-  console.log(selectVideoID);
+  console.log(modalId);
 
   return (
     <ModalFrame
@@ -34,10 +34,10 @@ const PlayerModal = ({
       <Modal.Title>
         <div>
           <div>
-            {selectVideoID && (
-              <div key={selectVideoID.id}>
-                <img src={selectVideoID.thumbnails} alt={selectVideoID.title} />
-                <h2>{selectVideoID.title}</h2>
+            {modalId && (
+              <div key={modalId.id}>
+                <img src={modalId.thumbnails} alt={modalId.title} />
+                <h2>{modalId.title}</h2>
               </div>
             )}
           </div>
