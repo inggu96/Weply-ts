@@ -1,4 +1,3 @@
-import React from "react";
 import ModalPortal from "./PortalModal";
 
 type modalFrameType = {
@@ -23,12 +22,12 @@ const ModalFrame = ({
   return (
     <ModalPortal>
       <div className="fixed top-0 left-0 w-full h-full" onClick={onClick}>
-        <div className="absolute top-0 bottom-0 left-0 right-0 px-20 pt-20 m-auto bg-white min-w-[10%] min-h-200 w-fit h-fit pb-30 rounded-12">
+        <div className="absolute top-0 bottom-0 right-0 px-20 pt-20 m-auto bg-white min-w-[10%] min-h-[100%] w-fit h-fit pb-30 rounded-12">
           <div className="flex flex-col items-stretch w-full">
             {children}
             {onClose && (
               <div
-                className="absolute inline-flex cursor-pointer right-20 top-20"
+                className="absolute inline-flex cursor-pointer right-5 top-0"
                 onClick={() => setOnModal(false)}
               >
                 닫기

@@ -1,14 +1,14 @@
 import { create } from "zustand";
 
-type VideoState = {
-  selectVideoID: string | null;
-  setVideoId: (id: string) => void;
-};
-
 type Video = {
   id: string;
   title: string;
   thumbnails: string;
+};
+
+type VideoState = {
+  selectVideoID: Video | null;
+  setVideoId: (id: string, title: string, thumbnails: string) => void;
 };
 
 type VideoTableState = {
@@ -18,9 +18,10 @@ type VideoTableState = {
 };
 
 export const usePlayListStore = create<VideoState>((set) => ({
-  selectVideoID: null,
-  setVideoId: (id: string) => set({ selectVideoID: id }),
+  selectVideoID: null as Video | null,
+  setVideoId: (id, title, thumbnails) => set({ selectVideoID: { id, title, thumbnails } }),
 }));
+
 export const useVideoStore = create<VideoTableState>((set) => ({
   videos: [],
   addVideo: (video) => set((state) => ({ videos: [...state.videos, video] })),

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { usePlayListStore } from "store";
 import { useVideoStore } from "store/Playlist";
-import BasicModal from "../portalModal/basicModal/BasicModal";
+import PlayerModal from "../portalModal/PlayerModal/PlayerModal";
 import { VideoTable } from "./VideoTable";
 
 interface Props {
@@ -16,7 +16,7 @@ export const MusicCard = ({ videoId, title, thumbnails }: Props) => {
   const [onModal, setOnModal] = useState(false);
 
   const handleClick = (thumbnails: string, videoId: string, title: string) => {
-    setVideoId(videoId);
+    setVideoId({ id: videoId, title, thumbnails });
     addVideo({ id: videoId, title, thumbnails });
     openModal();
     console.log(selectVideoID);
@@ -37,11 +37,7 @@ export const MusicCard = ({ videoId, title, thumbnails }: Props) => {
     <section>
       <div className="bg-gray-900 shadow-lg rounded p-3 mx-3 ">
         <div className="group relative">
-          {onModal && (
-            <BasicModal setOnModal={setOnModal} dimClick={false}>
-              <div>Modal Content Here</div>
-            </BasicModal>
-          )}
+          {onModal && <PlayerModal setOnModal={setOnModal} dimClick={false} />}
           <img
             className="w-full md:w-72 block rounded"
             src={thumbnails}

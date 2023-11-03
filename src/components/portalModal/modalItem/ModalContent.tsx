@@ -1,5 +1,3 @@
-import React from "react";
-
 type ModalContent = {
   children: React.ReactNode;
 };
