@@ -5,8 +5,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useQuery } from "@tanstack/react-query";
+import ReactPlayer from "react-player";
+import { useState } from "react";
+import { usePlayListStore } from "store";
 
 const Home = () => {
+  const { selectVideoID } = usePlayListStore();
   const { isLoading, error, data } = useQuery<VideoItem[]>({
     queryKey: ["popular"],
     queryFn: fetchPopularVideos,
@@ -33,6 +37,11 @@ const Home = () => {
       },
     ],
   };
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleAccordion = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div className="bg-black h-screen">
@@ -47,11 +56,23 @@ const Home = () => {
               <MusicCard
                 key={index}
                 title={item.snippet.title}
-                description={item.snippet.description}
                 thumbnails={item.snippet.thumbnails.high.url}
+                videoId={item.id}
               />
             ))}
           </Slider>
+        </div>
+        <div className="bg-sky-500 mt-5 cursor-pointer ">
+          <div>
+            <div onClick={toggleAccordion}>유튜브</div>
+          </div>
+
+          <div className={`${isOpen ? "block" : "hidden"}`}>
+            <ReactPlayer
+              controls={false}
+              url={`https://www.youtube.com/watch?v=${selectVideoID}`}
+            />
+          </div>
         </div>
       </div>
     </div>

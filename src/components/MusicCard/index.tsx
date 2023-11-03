@@ -1,15 +1,41 @@
+import { usePlayListStore } from "store";
+import { useVideoStore } from "store/Playlist";
+import { VideoTable } from "./VideoTable";
+
 interface Props {
-  title: string;
-  description: string;
+  videoId: string;
   thumbnails: string;
+  title: string;
 }
 
-export const MusicCard = ({ title, description, thumbnails }: Props) => {
+export const MusicCard = ({ videoId, title, thumbnails }: Props) => {
+  const { selectVideoID, setVideoId } = usePlayListStore();
+  const { addVideo } = useVideoStore();
+
+  const handleClick = (thumbnails: string, videoId: string, title: string) => {
+    setVideoId(videoId);
+    addVideo({ id: videoId, title, thumbnails });
+    console.log(selectVideoID);
+    console.log(videoId);
+    console.log(thumbnails);
+    console.log(title);
+  };
+
+  const handleButtonClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    handleClick(thumbnails, videoId, title);
+  };
+
   return (
     <section>
       <div className="bg-gray-900 shadow-lg rounded p-3 mx-3 ">
         <div className="group relative">
-          <img className="w-full md:w-72 block rounded" src={thumbnails} alt="" />
+          <img
+            className="w-full md:w-72 block rounded"
+            src={thumbnails}
+            alt=""
+            onClick={() => handleClick(thumbnails, videoId, title)}
+          />
           <div className="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex items-center group-hover:opacity-100 transition justify-evenly">
             <button className="hover:scale-110 text-white opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition">
               <svg
@@ -24,7 +50,10 @@ export const MusicCard = ({ title, description, thumbnails }: Props) => {
               </svg>
             </button>
 
-            <button className="hover:scale-110 text-white opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition">
+            <button
+              onClick={handleButtonClick}
+              className="hover:scale-110 text-white opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="40"
@@ -52,9 +81,10 @@ export const MusicCard = ({ title, description, thumbnails }: Props) => {
           </div>
         </div>
         <div className="p-5">
-          <h3 className="text-white text-lg h-20 shadow">{title}</h3>
+          <h3 className="text-white text-lg h-9 shadow truncate">{title}</h3>
         </div>
       </div>
+      <VideoTable />
     </section>
   );
 };
