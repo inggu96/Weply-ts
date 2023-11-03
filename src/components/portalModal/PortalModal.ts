@@ -1,31 +1,31 @@
-// import { useEffect } from "react";
-// import ReactDOM from "react-dom";
+import { useEffect } from "react";
+import ReactDOM from "react-dom";
 
-// interface ModalProps {
-//   children: React.ReactNode;
-//   onClose?: () => void;
-// }
+interface ModalProps {
+  children: React.ReactNode;
+  onClose?: () => void;
+}
 
-// const ModalPortal = ({ children, onClose }: ModalProps) => {
-//   useEffect(() => {
-//     const handleKeydown = (e: KeyboardEvent) => {
-//       if (e.key === "Escape") {
-//         // onClose();
-//       }
-//     };
+const ModalPortal = ({ children, onClose }: ModalProps) => {
+  useEffect(() => {
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        // onClose();
+      }
+    };
 
-//     window.addEventListener("keydown", handleKeydown);
+    window.addEventListener("keydown", handleKeydown);
 
-//     return () => {
-//       window.removeEventListener("keydown", handleKeydown);
-//     };
-//   }, [onClose]);
+    return () => {
+      window.removeEventListener("keydown", handleKeydown);
+    };
+  }, [onClose]);
 
-//   const modalRoot = document.getElementById("modal");
+  const modalRoot = document.getElementById("modal");
 
-//   if (!modalRoot) return null;
+  if (!modalRoot) return null;
 
-//   return ReactDOM.createPortal(children, modalRoot);
-// };aa
+  return ReactDOM.createPortal(children, modalRoot);
+};
 
-// export default ModalPortal;
+export default ModalPortal;

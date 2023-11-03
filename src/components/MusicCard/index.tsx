@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { usePlayListStore } from "store";
 import { useVideoStore } from "store/Playlist";
+import BasicModal from "../portalModal/basicModal/BasicModal";
 import { VideoTable } from "./VideoTable";
 
 interface Props {
@@ -11,10 +13,12 @@ interface Props {
 export const MusicCard = ({ videoId, title, thumbnails }: Props) => {
   const { selectVideoID, setVideoId } = usePlayListStore();
   const { addVideo } = useVideoStore();
+  const [onModal, setOnModal] = useState(false);
 
   const handleClick = (thumbnails: string, videoId: string, title: string) => {
     setVideoId(videoId);
     addVideo({ id: videoId, title, thumbnails });
+    openModal();
     console.log(selectVideoID);
     console.log(videoId);
     console.log(thumbnails);
@@ -25,16 +29,26 @@ export const MusicCard = ({ videoId, title, thumbnails }: Props) => {
     event.stopPropagation();
     handleClick(thumbnails, videoId, title);
   };
+  const openModal = () => {
+    setOnModal(true);
+  };
 
   return (
     <section>
       <div className="bg-gray-900 shadow-lg rounded p-3 mx-3 ">
         <div className="group relative">
+          {onModal && (
+            <BasicModal setOnModal={setOnModal} dimClick={false}>
+              <div>Modal Content Here</div>
+            </BasicModal>
+          )}
           <img
             className="w-full md:w-72 block rounded"
             src={thumbnails}
             alt=""
-            onClick={() => handleClick(thumbnails, videoId, title)}
+            onClick={() => {
+              handleClick(thumbnails, videoId, title);
+            }}
           />
           <div className="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex items-center group-hover:opacity-100 transition justify-evenly">
             <button className="hover:scale-110 text-white opacity-0 transform translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition">

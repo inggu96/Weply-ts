@@ -6,8 +6,8 @@ export const VideoTable = () => {
   return (
     <table>
       <tbody>
-        {videos.map((video) => (
-          <tr key={video.id}>
+        {videos.map((video, index) => (
+          <tr key={index}>
             <td>{video.id}</td>
             <td>{video.title}</td>
             <td>
