@@ -12,12 +12,18 @@ interface Props {
 
 export const MusicCard = ({ videoId, title, thumbnails }: Props) => {
   const { setSelectVideoId, setModalId } = usePlayListStore();
-  const { addVideo } = useVideoStore();
+  const { videos, addVideo } = useVideoStore();
   const [onModal, setOnModal] = useState(false);
 
   const handleClick = (thumbnails: string, videoId: string, title: string) => {
+    const videoExists = videos.some((video) => video.id === videoId);
+    if (!videoExists) {
+      addVideo({ id: videoId, title, thumbnails });
+    } else {
+      console.log("Video already exists in the list.");
+    }
     setSelectVideoId(videoId);
-    addVideo({ id: videoId, title, thumbnails });
+
     openModal();
     setModalId(videoId, title, thumbnails);
   };

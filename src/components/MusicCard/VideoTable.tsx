@@ -1,13 +1,14 @@
-import { useVideoStore } from "store/Playlist";
+import { usePlayListStore, useVideoStore } from "store/Playlist";
 
 export const VideoTable = () => {
   const { videos, removeVideo } = useVideoStore();
+  const { setSelectVideoId } = usePlayListStore();
 
   return (
     <table>
       <tbody>
         {videos.map((video, index) => (
-          <tr key={index}>
+          <tr className="bg-indigo-500" onClick={() => setSelectVideoId(video.id)} key={index}>
             <td>{index}</td>
             {/* <td>{video.id}</td> */}
             <td>
