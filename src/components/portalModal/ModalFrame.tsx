@@ -21,13 +21,13 @@ const ModalFrame = ({
 }: modalFrameType) => {
   return (
     <ModalPortal>
-      <div className="fixed top-0 left-0 w-full h-full" onClick={onClick}>
-        <div className="absolute top-0 bottom-0 right-0 px-20 pt-20 m-auto bg-white min-w-[10%] min-h-[100%] w-fit h-fit pb-30 rounded-12">
+      <div className="fixed top-0 right-0 w-1/3 h-full" onClick={onClick}>
+        <div className="absolute top-0 bottom-0 right-0 m-auto min-w-[10%] h-screen bg-white pb-2">
           <div className="flex flex-col items-stretch w-full">
             {children}
             {onClose && (
               <div
-                className="absolute inline-flex cursor-pointer right-5 top-0"
+                className="absolute inline-flex cursor-pointer right-15 top-20"
                 onClick={() => setOnModal(false)}
               >
                 닫기

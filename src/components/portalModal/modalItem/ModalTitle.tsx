@@ -3,7 +3,7 @@ type ModalTitleType = {
 };
 
 const ModalTitle = ({ children }: ModalTitleType) => {
-  return <div className="text-3xl font-bold">{children}</div>;
+  return <div className="flex-grow font-bold w-full">{children}</div>;
 };
 
 export default ModalTitle;

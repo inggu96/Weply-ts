@@ -3,7 +3,7 @@ type ModalContent = {
 };
 
 const ModalContent = ({ children }: ModalContent) => {
-  return <div>{children}</div>;
+  return <div className="w-full h-screen overflow-y-scroll">{children}</div>;
 };
 
 export default ModalContent;

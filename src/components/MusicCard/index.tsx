@@ -23,7 +23,6 @@ export const MusicCard = ({ videoId, title, thumbnails }: Props) => {
       console.log("Video already exists in the list.");
     }
     setSelectVideoId(videoId);
-
     openModal();
     setModalId(videoId, title, thumbnails);
   };
