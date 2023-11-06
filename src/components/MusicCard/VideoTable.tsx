@@ -10,18 +10,14 @@ export const VideoTable = () => {
         <tbody>
           {videos.map((video, index) => (
             <tr
-              className="flex w-full border-b py-3 cursor-pointer hover:shadow-md px-2 bg-white shadow"
+              className="flex w-full border-b cursor-pointer hover:shadow-md px-2 bg-white shadow"
               onClick={() => setSelectVideoId(video.id)}
               key={index}
             >
               <td>{index}</td>
               {/* <td>{video.id}</td> */}
               <td>
-                <img
-                  className=" w-10 h-10 object-cover rounded-lg w-20"
-                  src={video.thumbnails}
-                  alt=""
-                />
+                <img className="w-13 h-10 object-cover" src={video.thumbnails} alt="" />
               </td>
               <td className="text-red-500 capitalize font-semibold pt-1">{video.title}</td>
               {/* 캡션 <div className="text-xs text-gray-500 uppercase font-medium"></div> */}

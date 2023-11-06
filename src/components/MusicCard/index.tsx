@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const MusicCard = ({ videoId, title, thumbnails }: Props) => {
-  const { setSelectVideoId, setModalId } = usePlayListStore();
+  const { modalId, setSelectVideoId, setModalId } = usePlayListStore();
   const { videos, addVideo } = useVideoStore();
   const [onModal, setOnModal] = useState(false);
 
@@ -22,9 +22,18 @@ export const MusicCard = ({ videoId, title, thumbnails }: Props) => {
     } else {
       console.log("Video already exists in the list.");
     }
+    if (!modalId && !onModal) {
+      setModalId(videoId, title, thumbnails);
+      setSelectVideoId(videoId);
+      openModal();
+    }
+    if (!modalId) {
+      setModalId(videoId, title, thumbnails);
+    }
     setSelectVideoId(videoId);
-    openModal();
-    setModalId(videoId, title, thumbnails);
+    if (!onModal) {
+      openModal();
+    }
   };
 
   const handleButtonClick = (event: React.MouseEvent) => {
@@ -32,9 +41,10 @@ export const MusicCard = ({ videoId, title, thumbnails }: Props) => {
     handleClick(thumbnails, videoId, title);
   };
   const openModal = () => {
-    setOnModal(true);
+    if (!onModal) {
+      setOnModal(true);
+    }
   };
-
   return (
     <section>
       <div className="bg-gray-900 shadow-lg rounded p-3 mx-3 ">

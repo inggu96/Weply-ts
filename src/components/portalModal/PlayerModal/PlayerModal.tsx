@@ -90,7 +90,7 @@ const PlayerModal = ({
         )}
       </Modal.Title>
       <Modal.Content>
-        <div className="pb-5 w-full h-1/2 overflow-y-scroll">
+        <div className="w-full h-1/2 overflow-y-scroll">
           <VideoTable />
         </div>
       </Modal.Content>
